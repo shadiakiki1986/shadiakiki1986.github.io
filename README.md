@@ -1,5 +1,5 @@
 ### About me
-I am a financial engineer, and I focus on automation by leveraging upon open-source technology to achieve goals without incurring licensing costs.
+I am a financial engineer, and I focus on automation by leveraging upon open-source technology to achieve goals while minimizing costs.
 
 ### Products
 Here are some products that I've built
