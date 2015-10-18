@@ -52,4 +52,4 @@ Here are my favorite tools for development, data analysis, shared documentation,
 ### Contact
 You can download my most recent CV [here](https://www.dropbox.com/s/2iw1d9w0dg3rshb/CV-ShadiAkiki-201510.pdf?dl=0). It includes my contact information.
 
-Last edited on: 2015-10-14
+Last edited on: 2015-10-18
