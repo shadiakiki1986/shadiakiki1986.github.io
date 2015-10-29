@@ -50,6 +50,7 @@ Here are my favorite tools for development, data analysis, shared documentation,
 * [Apache HTTP server](https://httpd.apache.org/): web server
 
 ### Contact
-You can download my most recent CV [here](https://www.dropbox.com/s/2iw1d9w0dg3rshb/CV-ShadiAkiki-201510.pdf?dl=0). It includes my contact information.
+* You can download my most recent CV [here](https://www.dropbox.com/s/2iw1d9w0dg3rshb/CV-ShadiAkiki-201510.pdf?dl=0). It includes my contact information.
+* I am also listed on <a  style="color:#0E77B0" href="http://www.datadubai.com/">Dubai Classifieds & Business Directory</a>.  under <a  style="color:#0E77B0" href="http://www.datadubai.com/United_Arab_Emirates/Dubai/Dubai_Business_and_Economy/Finance/Banking_Equipment/1434.html">Banking Equipment</a> category
 
-Last edited on: 2015-10-18
+Last edited on: 2015-10-29
