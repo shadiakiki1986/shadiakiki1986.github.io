@@ -1,0 +1,8 @@
+title: Shadi Akiki
+description: Financial Engineer
+google_analytics: UA-68799534-1
+show_downloads: true
+theme: jekyll-theme-minimal
+
+gems:
+  - jekyll-mentions
