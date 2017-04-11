@@ -1,6 +1,14 @@
 ### About me
 I am a financial engineer, and I focus on automation by leveraging upon open-source technology to achieve goals while minimizing costs.
 
+## Internships (2017)
+ATM (2017-04-11) I am looking for interns to help me with my work.
+[Here](https://github.com/search?q=label%3Abounty+author%3Ashadiakiki1986&type=Issues&utf8=%E2%9C%93)
+is my list of issues for which I'm offering bounties.
+I try to set the bounties such that it's almost a 10$/hour pay.
+Coincidently, I'm also getting married next week (wish me luck),
+so it'll be around 2 months before I get back to actively adding issues to the list.
+
 ### Products
 Here are some products that I've built
 * [The Allocator](http://shadiakiki1986.github.io/the-allocator/): platform in which a user sets up strategies and distributes accounts to those strategies .. the system calculates what trades are required for accounts to be in-line with the strategy .. can save locally or interact with a server
@@ -39,20 +47,22 @@ Here are some services that I've provided
 * Asset management: I didn't give financial advice, but I helped a high-net-worth individual to use [Horizon](http://www.qnesssoftware.com/our_product.html) (an accounting tool that consolidates multiple bank accounts into one platform) to understand how his money was being invested
 
 ### Development tools
-Here are my favorite tools for development, data analysis, shared documentation, etc.
+Here are some of my favorite tools for development, data analysis, shared documentation, etc.
 * [Ubuntu server](http://www.ubuntu.com/server): server operating system
-* [php](http://php.net/): server-side application
+* containers: docker
+* web app framework: django
+* server-side: [php](http://php.net/), python, nodejs, golang
+* inter-services messaging: [nats](http://nats.io)
+* web server: [Apache HTTP server](https://httpd.apache.org/), nginx
 * [AWS EC2](https://aws.amazon.com/ec2/): server hosting
 * [AngularJS](https://angularjs.org/): client-side application
 * [R](https://www.r-project.org/): data analysis
 * [Mediawiki](https://www.mediawiki.org/wiki/MediaWiki): shared documentation
 * [Wink](http://www.debugmode.com/wink/): screen capturing
 * [Apache Cordova](https://cordova.apache.org/): cross-platform mobile app development
-* [Apache HTTP server](https://httpd.apache.org/): web server
-* python, nodejs, yeoman
 
 ### Contact
 * You can download my most recent CV [here](https://www.dropbox.com/s/2iw1d9w0dg3rshb/CV-ShadiAkiki-201510.pdf?dl=0). It includes my contact information.
 * I am also listed on <a  style="color:#0E77B0" href="http://www.datadubai.com/">Dubai Classifieds & Business Directory</a>.  under <a  style="color:#0E77B0" href="http://www.datadubai.com/United_Arab_Emirates/Dubai/Dubai_Business_and_Economy/Finance/Banking_Equipment/1434.html">Banking Equipment</a> category
 
-Last edited on: 2015-10-29
+Last edited on: 2017-04-11
