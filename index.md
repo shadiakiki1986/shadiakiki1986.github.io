@@ -3,7 +3,7 @@ I am a **Senior Data Scientist** with the ability to build turn-key data analysi
 
 ### Tools
 Here are some of my active tools
-* Data science: tensorflow/keras (deep learning), sklearn (machine learning), garage (reinforcement learning), neo4j (graphs), https://colab.research.google.com (platform)
+* Data science: tensorflow/keras (deep learning), sklearn (machine learning), [colab.research.google.com](https://colab.research.google.com) (AI platform), garage (reinforcement learning), neo4j (graphs)
 * Data engineering: pandas, numpy, scipy, scrapy
 * Databases: postgresql (relational), Mongodb (nosql), Apache Spark (big data)
 * Web frameworks/apps: django, flask, nginx, heroku (app hosting)
