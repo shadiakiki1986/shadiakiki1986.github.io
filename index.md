@@ -57,7 +57,7 @@ Here are some of my active tools and example products that I've built
   </ul>
 <td>
 <ul>
-<li>automated data pipelines</li>
+<li>automated data pipelines between well structured sources or unstructured sources such as emails, pdfs, worksheets, etc</li>
 <li>mirror data from a source software to a target unrelated software</li>
 <li>version control of text exports of database tables to monitor changes in any field</li>
 </ul>
