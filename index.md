@@ -18,7 +18,7 @@ Here are some of my active tools and example products that I've built
   <li>tensorflow/keras (deep learning)</li>
   <li>sklearn (machine learning)</li>
   <li>garage (reinforcement learning)</li>
-  <li>neo4j (graphs)</td></li>
+  <li>neo4j (graphs)</li>
   <li>jupyter / jupyterhub (experimentation)</li>
   <li><a href="https://colab.research.google.com">colab.research.google.com</a> (experimentation)</li>
   </ul>
