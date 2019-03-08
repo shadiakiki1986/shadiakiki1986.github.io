@@ -1,29 +1,26 @@
 ### About me
 I am a **Senior Data Scientist** with the ability to build turn-key data analysis solutions. My highest value is in modeling of data relationships, but my work covers the full range of data acquisition, data structuring, analysis, modeling, presentation, and alerting. My previous work has been for small to medium institutions in Boston, Singapore, Beirut, Dubai, Geneva, London, and Paris.
 
-### Tools
-Here are some of my active tools
-
-| Field               | Tools                                                                                                                                                                                                        |
-|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Data science        | tensorflow/keras (deep learning), sklearn (machine learning), [colab.research.google.com](https://colab.research.google.com) (AI platform), garage (reinforcement learning), neo4j (graphs)                  |
-| Data engineering    | pandas, numpy, scipy, scrapy                                                                                                                                                                                 |
-| Databases           | postgresql (relational), Mongodb (nosql), Apache Spark (big data)                                                                                                                                            |
-| Web frameworks/apps | django, flask, nginx, heroku (app hosting)                                                                                                                                                                   |
-| General             | git (version control), linux (operating system), bash (command-line), AWS EC2 (compute power), jupyter / jupyterhub (experimentation), travis-ci.org (testing), pytest (unit tests), tableau (visualization) |
-
-
-### Example products
-Here are some examples of products that I've built
+### Tools and Examples
+Here are some of my active tools and example products that I've built
 
 <table>
 <tbody>
 <tr>
 <td>Field</td>
+<td>Tools</td>
 <td>Examples</td>
 </tr>
 <tr>
 <td>Data science</td>
+<td>
+  <ul>
+  <li>tensorflow/keras (deep learning)</li>
+  <li>sklearn (machine learning)</li>
+  <li><a href="https://colab.research.google.com">colab.research.google.com</a> (AI platform)</li>
+  <li>garage (reinforcement learning)</li>
+  <li>neo4j (graphs)</td></li>
+  </ul>
 <td>
 <ul>
 <li>LSTM autoencoder on economic data with feedforward network between latent variables</li>
@@ -36,6 +33,13 @@ Here are some examples of products that I've built
 <tr>
 <td>Data engineering</td>
 <td>
+  <ul>
+  <li>pandas</li>
+  <li>numpy</li>
+  <li>scipy</li>
+  <li>scrapy</li>
+  </ul>
+<td>
 <ul>
 <li>reconcile the same data from different sources to highlight mismatches for correction</li>
 <li>scraping unstructured data from websites and reformatting into a structured format</li>
@@ -44,6 +48,12 @@ Here are some examples of products that I've built
 </tr>
 <tr>
 <td>Databases</td>
+<td>
+  <ul>
+  <li>postgresql (relational)</li>
+  <li>Mongodb (nosql)</li>
+  <li>Apache Spark (big data)</li>
+  </ul>
 <td>
 <ul>
 <li>automated data pipelines to mirror data from a source software to a target unrelated software</li>
@@ -54,6 +64,14 @@ Here are some examples of products that I've built
 <tr>
 <td>Web frameworks/apps</td>
 <td>
+  <ul>
+  <li>django</li>
+  <li>flask</li>
+  <li>nginx</li>
+  <li>heroku (app hosting)</li>
+  </ul>
+  </td>
+<td>
 <ul>
 <li>platform for communicating well-formatted information between teams and track acknowledgements</li>
 <li>platform for interacting with all above tools</li>
@@ -63,6 +81,18 @@ Here are some examples of products that I've built
 </tr>
 <tr>
 <td>General</td>
+<td>
+  <ul>
+  <li>git (version control)</li>
+  <li>linux (operating system)</li>
+  <li>bash (command-line)</li>
+  <li>AWS EC2 (compute power)</li>
+  <li>jupyter / jupyterhub (experimentation)</li>
+  <li>travis-ci.org (testing)</li>
+  <li>pytest (unit tests)</li>
+  <li>tableau (visualization)</li>
+  </ul>
+</td>
 <td>
 <ul>
 <li>implement new features in existing popular open-source tools and have them integrated into upstream codebase</li>
