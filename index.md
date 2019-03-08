@@ -17,9 +17,10 @@ Here are some of my active tools and example products that I've built
   <ul>
   <li>tensorflow/keras (deep learning)</li>
   <li>sklearn (machine learning)</li>
-  <li><a href="https://colab.research.google.com">colab.research.google.com</a> (AI platform)</li>
   <li>garage (reinforcement learning)</li>
   <li>neo4j (graphs)</td></li>
+  <li>jupyter / jupyterhub (experimentation)</li>
+  <li><a href="https://colab.research.google.com">colab.research.google.com</a> (experimentation)</li>
   </ul>
 <td>
 <ul>
@@ -69,6 +70,7 @@ Here are some of my active tools and example products that I've built
   <li>flask</li>
   <li>nginx</li>
   <li>heroku (app hosting)</li>
+  <li>AWS EC2 (compute power)</li>
   </ul>
   </td>
 <td>
@@ -86,8 +88,6 @@ Here are some of my active tools and example products that I've built
   <li>git (version control)</li>
   <li>linux (operating system)</li>
   <li>bash (command-line)</li>
-  <li>AWS EC2 (compute power)</li>
-  <li>jupyter / jupyterhub (experimentation)</li>
   <li>travis-ci.org (testing)</li>
   <li>pytest (unit tests)</li>
   <li>tableau (visualization)</li>
@@ -96,6 +96,8 @@ Here are some of my active tools and example products that I've built
 <td>
 <ul>
 <li>implement new features in existing popular open-source tools and have them integrated into upstream codebase</li>
+<li>Organize all code implemented in re-usable packages</li>
+<li>Deploy platforms and automated tools in-house on existing hardware or in the cloud</li>
 </ul>
 </td>
 </tr>
