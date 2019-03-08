@@ -55,8 +55,9 @@ Here are some examples of products that I've built
 <td>Web frameworks/apps</td>
 <td>
 <ul>
-<li>web platform for communicating well-formatted information between teams and track acknowledgements</li>
-<li>web platform for interacting with all above tools</li>
+<li>platform for communicating well-formatted information between teams and track acknowledgements</li>
+<li>platform for interacting with all above tools</li>
+<li>platform for single point-of-entry of data entry that feeds to multiple different and unrelated software</li>
 </ul>
 </td>
 </tr>
