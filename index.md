@@ -1,5 +1,5 @@
 ### About me
-I am a **Senior Data Scientist** with the ability to build turn-key data analysis solutions. My highest value is in modeling of data relationships, but my work covers the full range of data acquisition, data structuring, analysis, modeling, presentation, and alerting. My previous work has been for small to medium institutions in Boston, Singapore, Beirut, Dubai, Geneva, London, and Paris.
+I am a **Senior Data Scientist** with the ability to build turnkey data-oriented solutions. My highest value is in modeling of data relationships, but my work covers the full range of data acquisition, data structuring, analysis, modeling, presentation, and alerting. My previous work has been for small to medium institutions in Boston, Singapore, Beirut, Dubai, Geneva, London, and Paris.
 
 ### Tools and Examples
 Here are some of my active tools and example products that I've built
