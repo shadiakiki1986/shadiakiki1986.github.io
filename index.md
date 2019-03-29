@@ -22,6 +22,7 @@ Here are some of my active tools and example products that I've built
   <li>jupyter / jupyterhub (experimentation)</li>
   <li><a href="https://colab.research.google.com">colab.research.google.com</a> (experimentation)</li>
   </ul>
+</td>
 <td>
 <ul>
 <li>LSTM autoencoder on economic data with feedforward network between latent variables</li>
@@ -40,6 +41,7 @@ Here are some of my active tools and example products that I've built
   <li>scipy</li>
   <li>scrapy</li>
   </ul>
+  </td>
 <td>
 <ul>
 <li>reconcile the same data from different sources to highlight mismatches for correction</li>
@@ -55,6 +57,7 @@ Here are some of my active tools and example products that I've built
   <li>Mongodb (nosql)</li>
   <li>Apache Spark (big data)</li>
   </ul>
+</td>
 <td>
 <ul>
 <li>automated data pipelines between well structured sources or unstructured sources such as emails, pdfs, worksheets, etc</li>
@@ -73,7 +76,7 @@ Here are some of my active tools and example products that I've built
   <li>heroku (app hosting)</li>
   <li>AWS EC2 (compute power)</li>
   </ul>
-  </td>
+</td>
 <td>
 <ul>
 <li>platform for communicating well-formatted information between teams and track acknowledgements</li>
@@ -104,6 +107,8 @@ Here are some of my active tools and example products that I've built
 </tr>
 </tbody>
 </table>
+
+
 <p>&nbsp;</p>
 
 
