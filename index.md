@@ -15,12 +15,12 @@ Here are some of my active tools and example products that I've built
 <td>Data science</td>
 <td>
   <ul>
-  <li>tensorflow/keras (deep learning)</li>
-  <li>sklearn (machine learning)</li>
-  <li>garage (reinforcement learning)</li>
-  <li>neo4j (graphs)</li>
-  <li>jupyter / jupyterhub (experimentation)</li>
-  <li><a href="https://colab.research.google.com">colab.research.google.com</a> (experimentation)</li>
+    <li><a href="https://www.tensorflow.org/">tensorflow</a>/keras (deep learning)</li>
+    <li><a href="https://scikit-learn.org/"sklearn</a> (machine learning)</li>
+    <li><a href="https://github.com/rlworkgroup/garage/">garage</a> (reinforcement learning)</li>
+    <li><a href="https://neo4j.com/">neo4j</a> (graphs)</li>
+    <li>jupyter / <a href="https://jupyterhub.readthedocs.io/en/stable/">jupyterhub</a> (experimentation)</li>
+    <li><a href="https://colab.research.google.com">colab.research.google.com</a> (experimentation)</li>
   </ul>
 </td>
 <td>
