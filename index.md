@@ -16,7 +16,7 @@ Here are some of my active tools and example products that I've built
 <td>
   <ul>
     <li><a href="https://www.tensorflow.org/">tensorflow</a>/keras (deep learning)</li>
-    <li><a href="https://scikit-learn.org/"sklearn</a> (machine learning)</li>
+    <li><a href="https://scikit-learn.org/">sklearn</a> (machine learning)</li>
     <li><a href="https://github.com/rlworkgroup/garage/">garage</a> (reinforcement learning)</li>
     <li><a href="https://neo4j.com/">neo4j</a> (graphs)</li>
     <li>jupyter / <a href="https://jupyterhub.readthedocs.io/en/stable/">jupyterhub</a> (experimentation)</li>
@@ -36,10 +36,10 @@ Here are some of my active tools and example products that I've built
 <td>Data engineering</td>
 <td>
   <ul>
-  <li>pandas</li>
-  <li>numpy</li>
-  <li>scipy</li>
-  <li>scrapy</li>
+    <li><a href="http://pandas.pydata.org/">pandas</a></li>
+    <li><a href="http://www.numpy.org/">numpy</a></li>
+    <li><a href="https://www.scipy.org/scipylib/index.html">scipy library</a></li>
+    <li><a href="https://doc.scrapy.org/en/latest/">scrapy</a></li>
   </ul>
   </td>
 <td>
