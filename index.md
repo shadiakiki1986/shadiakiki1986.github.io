@@ -113,6 +113,6 @@ Here are some of my active tools and example products that I've built
 
 
 ### Contact
-You can download my CV [here](https://www.dropbox.com/s/5skf5cvlgkicyra/CV-ShadiAkiki-20190319.pdf?dl=0). It includes my contact information.
+You can download my latest CV [here](https://www.dropbox.com/s/b16xkm7hhdu2tya/CV-ShadiAkiki-latest.pdf?dl=0). It includes my contact information.
 
 Last edited on: 2019-03-29
