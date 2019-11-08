@@ -1,7 +1,12 @@
 ### About me
+
 I am a **Senior Data Scientist** who builds turnkey data-oriented solutions. My highest value is in modeling of data relationships, but my work covers the full range of data acquisition, structuring, analysis, modeling, presentation, and alerting. My previous work has been for small to medium institutions in Boston, Singapore, Beirut, Dubai, Geneva, London, and Paris.
 
+As of July 2019, my focus is on my startup, [AutofitCloud Technologies, Inc.](https://autofitcloud.com)
+
+
 ### Tools and Examples
+
 Here are some of my active tools and example products that I've built
 
 <table>
@@ -115,4 +120,4 @@ Here are some of my active tools and example products that I've built
 ### Contact
 You can download my latest CV [here](https://www.dropbox.com/s/b16xkm7hhdu2tya/CV-ShadiAkiki-latest.pdf?dl=0). It includes my contact information.
 
-Last edited on: 2019-03-29
+Last edited on: 2019-11-08
