@@ -118,6 +118,11 @@ Here are some of my active tools and example products that I've built
 
 
 ### Contact
-You can download my latest CV [here](https://www.dropbox.com/s/b16xkm7hhdu2tya/CV-ShadiAkiki-latest.pdf?dl=0). It includes my contact information.
 
-Last edited on: 2019-11-08
+- [CV](https://www.dropbox.com/s/b16xkm7hhdu2tya/CV-ShadiAkiki-latest.pdf?dl=0)
+- [reddit](https://www.reddit.com/user/shadiakiki1986/)
+- [twitter](https://twitter.com/shadiakiki)
+- [linkedin](https://www.linkedin.com/in/shadi-akiki-379733190/)
+- [facebook](https://www.facebook.com/shadi.akiki)
+
+Last edited on: 2019-11-29
