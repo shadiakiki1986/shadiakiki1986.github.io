@@ -1,0 +1,346 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"></head><body><title>Temper Meter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one phone-width column; the gauge is the hero, controls sit under the thumb, evidence (readouts, trace) below. */
+:root{
+  --bg:#eef2f3; --surface:#ffffff; --ink:#15212b; --muted:#5b6b77; --line:#d5dde2;
+  --calm:#23877b; --tense:#b97d10; --hot:#cf3b2a; --accent:#1f4f78; --accent-ink:#ffffff;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"IBM Plex Sans",ui-sans-serif,system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0e1419; --surface:#161f27; --ink:#e4ecf1; --muted:#90a2af; --line:#26333e;
+  --calm:#4fc0ae; --tense:#e6aa3c; --hot:#f2654f; --accent:#7fb3df; --accent-ink:#0e1419; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1419; --surface:#161f27; --ink:#e4ecf1; --muted:#90a2af; --line:#26333e;
+  --calm:#4fc0ae; --tense:#e6aa3c; --hot:#f2654f; --accent:#7fb3df; --accent-ink:#0e1419; color-scheme:dark}
+html,body{background:var(--bg);color:var(--ink)}
+body{font-family:var(--body);font-size:15px;line-height:1.5;padding:20px 16px 40px}
+.wrap{max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+header{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+h1{font-family:var(--display);font-weight:800;font-size:1.75rem;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.cal-state{font-family:var(--mono);font-size:.75rem;color:var(--muted)}
+.gauge-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px 16px 16px;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative}
+.gauge{width:100%;max-width:340px;height:auto;display:block}
+.score{font-family:var(--display);font-weight:800;font-size:64px;fill:var(--ink);font-variant-numeric:tabular-nums}
+.tick{font-family:var(--mono);font-size:9px;fill:var(--muted)}
+.verdict{font-family:var(--display);font-weight:700;font-size:1.6rem;letter-spacing:-.01em;margin-top:-6px;transition:color .3s}
+.sub{color:var(--muted);font-size:.85rem;text-align:center;min-height:1.3em}
+.chip{position:absolute;top:12px;left:12px;font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;padding:3px 8px;border-radius:99px;border:1px dashed var(--muted);color:var(--muted)}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+button{font:600 1rem var(--body);border-radius:12px;padding:14px 12px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+button.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+button:focus-visible,.file-btn:focus-within{outline:3px solid var(--accent);outline-offset:2px}
+button:disabled{opacity:.5;cursor:default}
+.note{border-radius:12px;padding:12px 14px;font-size:.9rem;background:var(--surface);border:1px solid var(--line)}
+.note.warn{border-color:var(--tense)}
+.note strong{font-weight:600}
+.prompt-line{font-family:var(--display);font-size:1.15rem;font-weight:500;margin:6px 0 2px}
+.readouts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.ro{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-width:0}
+.ro .lab{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.ro .val{font-family:var(--mono);font-size:1.25rem;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ro .unit{font-size:.75rem;color:var(--muted);margin-left:2px}
+section h2{font-family:var(--display);font-weight:700;font-size:1.05rem;margin:0 0 8px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+section h2 span{font-family:var(--mono);font-weight:400;font-size:.72rem;color:var(--muted)}
+.trace-box{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px}
+canvas{width:100%;height:150px;display:block}
+.file-btn{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:600;border:1px dashed var(--muted);border-radius:12px;padding:14px;cursor:pointer;background:var(--surface)}
+.file-btn input{position:absolute;opacity:0;width:1px;height:1px}
+.file-result{font-size:.9rem;color:var(--muted);margin-top:8px}
+details{font-size:.9rem;color:var(--muted)}
+details summary{cursor:pointer;color:var(--ink);font-weight:600}
+details p{margin:.5em 0}
+.linkish{background:none;border:none;padding:0;color:var(--accent);font:inherit;font-size:.75rem;text-decoration:underline;cursor:pointer}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Temper Meter</h1>
+    <div class="cal-state"><span id="calState">Generic voice profile</span> <button class="linkish" id="resetCal" hidden>reset</button></div>
+  </header>
+
+  <div class="gauge-card" aria-live="polite">
+    <span class="chip" id="exampleChip">Example</span>
+    <svg class="gauge" viewBox="0 0 240 150" role="img" aria-label="Anger score gauge">
+      <path d="M20 125 A100 100 0 0 1 220 125" fill="none" stroke="var(--line)" stroke-width="16" stroke-linecap="round"/>
+      <path id="arc" d="M20 125 A100 100 0 0 1 220 125" fill="none" stroke="var(--calm)" stroke-width="16" stroke-linecap="round" pathLength="100" stroke-dasharray="0 100" style="transition:stroke-dasharray .25s,stroke .3s"/>
+      <g id="ticks"></g>
+      <text id="scoreText" class="score" x="120" y="118" text-anchor="middle">–</text>
+    </svg>
+    <div class="verdict" id="verdict">Calm</div>
+    <div class="sub" id="sub">Tap Start listening and talk normally.</div>
+  </div>
+
+  <div class="controls">
+    <button class="primary" id="startBtn">Start listening</button>
+    <button id="calBtn">Calibrate calm voice</button>
+  </div>
+
+  <div class="note" id="calNote" hidden>
+    <div>Read this aloud in your normal, relaxed voice:</div>
+    <div class="prompt-line">“The bus usually comes at a quarter past eight, and I like to sit near the window.”</div>
+    <div class="cal-state" id="calCount">6 s left</div>
+  </div>
+
+  <div class="note warn" id="micNote" hidden></div>
+
+  <div class="readouts">
+    <div class="ro"><div class="lab">Loudness</div><div class="val" id="vDb">−34<span class="unit">dB</span></div></div>
+    <div class="ro"><div class="lab">Pitch</div><div class="val" id="vPitch">168<span class="unit">Hz</span></div></div>
+    <div class="ro"><div class="lab">Sharpness</div><div class="val" id="vCent">1.7<span class="unit">kHz</span></div></div>
+  </div>
+
+  <section>
+    <h2>Anger over time <span id="traceLabel">example · 30 s</span></h2>
+    <div class="trace-box"><canvas id="trace" aria-label="Anger score over time"></canvas></div>
+  </section>
+
+  <section>
+    <h2>Analyze a recording <span>works anywhere</span></h2>
+    <label class="file-btn" for="fileIn">Choose or record audio<input type="file" id="fileIn" accept="audio/*"></label>
+    <div class="file-result" id="fileResult">Voice memos up to 5 minutes. The file stays on your phone.</div>
+  </section>
+
+  <details>
+    <summary>How it decides</summary>
+    <p>Every tenth of a second it measures three things: how loud you are, the pitch of your voice, and how sharp or harsh it sounds (where the energy sits in the frequency spectrum). Angry speech is usually louder, higher, and sharper than the same person's calm speech.</p>
+    <p>Each measure is compared with your calm baseline and combined into a 0–100 score, smoothed over about a second. Under 45 is calm, 45–65 is tense, above 65 is angry.</p>
+    <p>Calibrate once for much better results. Without it, the meter compares you with a generic voice. It can't tell anger from excitement, shouting across a room, or a loud laugh, and it ignores the words you say.</p>
+  </details>
+</div>
+
+<script>
+(function(){
+const N=2048, CALM=45, HOT=65;
+const DEF={db:-32,dbSd:6,pitch:170,pitchSd:35,cent:1600,centSd:450,generic:true};
+const $=id=>document.getElementById(id);
+const hann=new Float32Array(N); for(let i=0;i<N;i++) hann[i]=0.5-0.5*Math.cos(2*Math.PI*i/(N-1));
+const re=new Float32Array(N), im=new Float32Array(N);
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+
+function fft(re,im){const n=re.length;
+  for(let i=1,j=0;i<n;i++){let bit=n>>1;for(;j&bit;bit>>=1)j^=bit;j^=bit;
+    if(i<j){let t=re[i];re[i]=re[j];re[j]=t;t=im[i];im[i]=im[j];im[j]=t;}}
+  for(let len=2;len<=n;len<<=1){const ang=-2*Math.PI/len,wr=Math.cos(ang),wi=Math.sin(ang),h=len>>1;
+    for(let i=0;i<n;i+=len){let cr=1,ci=0;
+      for(let k=0;k<h;k++){const a=i+k,b=a+h;const tr=re[b]*cr-im[b]*ci,ti=re[b]*ci+im[b]*cr;
+        re[b]=re[a]-tr;im[b]=im[a]-ti;re[a]+=tr;im[a]+=ti;const nr=cr*wr-ci*wi;ci=cr*wi+ci*wr;cr=nr;}}}}
+
+function detectPitch(x,sr){
+  const d=Math.max(1,Math.round(sr/12000)),fs=sr/d,M=Math.floor(N/d),y=new Float32Array(M);
+  let mean=0;for(let i=0;i<M;i++){let a=0;for(let j=0;j<d;j++)a+=x[i*d+j];y[i]=a/d;mean+=y[i];}
+  mean/=M;let e=0;for(let i=0;i<M;i++){y[i]-=mean;e+=y[i]*y[i];}
+  if(e<1e-7)return null;
+  const minLag=Math.floor(fs/450),maxLag=Math.min(M-2,Math.ceil(fs/70)),ac=new Float32Array(maxLag+1);
+  let best=-1,bestLag=0;
+  for(let lag=minLag;lag<=maxLag;lag++){let c=0,e1=0,e2=0;
+    for(let i=0;i<M-lag;i++){c+=y[i]*y[i+lag];e1+=y[i]*y[i];e2+=y[i+lag]*y[i+lag];}
+    const r=c/Math.sqrt(e1*e2+1e-12);ac[lag]=r;if(r>best){best=r;bestLag=lag;}}
+  if(best<0.55)return null;
+  const half=Math.round(bestLag/2);if(half>=minLag&&ac[half]>best*0.85)bestLag=half;
+  return fs/bestLag;
+}
+
+function features(x,sr){
+  let s=0;for(let i=0;i<N;i++)s+=x[i]*x[i];
+  const db=20*Math.log10(Math.sqrt(s/N)+1e-9);
+  for(let i=0;i<N;i++){re[i]=x[i]*hann[i];im[i]=0;}
+  fft(re,im);
+  let num=0,den=0;const bin=sr/N;
+  for(let k=2;k<N/2;k++){const f=k*bin;if(f>8000)break;const m=Math.hypot(re[k],im[k]);num+=f*m;den+=m;}
+  return {db,cent:den>0?num/den:0,pitch:detectPitch(x,sr)};
+}
+
+function rawScore(f,b){
+  const zL=clamp((f.db-b.db)/Math.max(b.dbSd,3),-3,5);
+  const zP=f.pitch?clamp((f.pitch-b.pitch)/Math.max(b.pitchSd,15),-3,4):0;
+  const zC=clamp((f.cent-b.cent)/Math.max(b.centSd,200),-3,4);
+  const r=0.55*zL+0.3*zP+0.35*zC-1;
+  return 100/(1+Math.exp(-1.2*r));
+}
+const stateOf=s=>s>=HOT?"Angry":s>=CALM?"Tense":"Calm";
+const colorVar=s=>s>=HOT?"--hot":s>=CALM?"--tense":"--calm";
+const css=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+function stats(arr){const m=arr.reduce((a,b)=>a+b,0)/arr.length;
+  const sd=Math.sqrt(arr.reduce((a,b)=>a+(b-m)*(b-m),0)/arr.length);return [m,sd];}
+function makeBaseline(fr){
+  const [db,dbSd]=stats(fr.map(f=>f.db)),[cent,centSd]=stats(fr.map(f=>f.cent));
+  const p=fr.map(f=>f.pitch).filter(Boolean);
+  const [pitch,pitchSd]=p.length>5?stats(p):[DEF.pitch,DEF.pitchSd];
+  return {db,dbSd,pitch,pitchSd,cent,centSd};
+}
+
+/* baseline storage */
+let baseline=null;
+try{const s=localStorage.getItem("temper-baseline");if(s)baseline=JSON.parse(s);}catch(e){}
+function showCal(){
+  $("calState").textContent=baseline?`Calibrated · ${Math.round(baseline.pitch)} Hz calm pitch`:"Generic voice profile";
+  $("resetCal").hidden=!baseline;
+}
+$("resetCal").onclick=()=>{baseline=null;try{localStorage.removeItem("temper-baseline");}catch(e){}showCal();};
+showCal();
+
+/* gauge */
+(function ticks(){const g=$("ticks");let h="";
+  [[0,"0"],[CALM,"45"],[HOT,"65"],[100,"100"]].forEach(([v,l])=>{
+    const a=Math.PI*(1-v/100),x1=120+88*Math.cos(a),y1=125-88*Math.sin(a),x2=120+76*Math.cos(a),y2=125-76*Math.sin(a);
+    const tx=120+66*Math.cos(a),ty=125-66*Math.sin(a)+3;
+    h+=`<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="var(--muted)" stroke-width="1.5"/>`;
+    if(v===CALM||v===HOT)h+=`<text class="tick" x="${tx.toFixed(1)}" y="${ty.toFixed(1)}" text-anchor="middle">${l}</text>`;});
+  g.innerHTML=h;})();
+function setGauge(s,sub){
+  const v=Math.round(s);
+  $("arc").setAttribute("stroke-dasharray",`${clamp(v,0.5,100)} 100`);
+  $("arc").setAttribute("stroke",`var(${colorVar(v)})`);
+  $("scoreText").textContent=v;
+  $("verdict").textContent=stateOf(v);
+  $("verdict").style.color=`var(${colorVar(v)})`;
+  if(sub!=null)$("sub").textContent=sub;
+}
+function setReadouts(f){
+  $("vDb").innerHTML=`${f.db<-90?"—":Math.round(f.db).toString().replace("-","−")}<span class="unit">dB</span>`;
+  $("vPitch").innerHTML=`${f.pitch?Math.round(f.pitch):"—"}<span class="unit">Hz</span>`;
+  $("vCent").innerHTML=`${(f.cent/1000).toFixed(1)}<span class="unit">kHz</span>`;
+}
+
+/* trace */
+const cv=$("trace");let tracePts=[],traceSpan=[0,30];
+function drawTrace(){
+  const dpr=window.devicePixelRatio||1,w=cv.clientWidth,h=cv.clientHeight;
+  if(cv.width!==Math.round(w*dpr)){cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr);}
+  const c=cv.getContext("2d");c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,w,h);
+  const L=26,T=6,B=18,W=w-L-4,H=h-T-B,y=v=>T+H*(1-v/100);
+  const [t0,t1]=traceSpan,x=t=>L+W*(t-t0)/Math.max(t1-t0,1e-3);
+  [[HOT,100,"--hot"],[CALM,HOT,"--tense"],[0,CALM,"--calm"]].forEach(([a,b,v])=>{
+    c.globalAlpha=0.09;c.fillStyle=css(v);c.fillRect(L,y(b),W,y(a)-y(b));});
+  c.globalAlpha=1;c.strokeStyle=css("--line");c.lineWidth=1;
+  c.fillStyle=css("--muted");c.font=`10px ${css("--mono")}`;c.textAlign="right";c.textBaseline="middle";
+  [0,CALM,HOT,100].forEach(v=>{c.beginPath();c.moveTo(L,y(v));c.lineTo(L+W,y(v));c.stroke();c.fillText(v,L-5,y(v));});
+  c.textAlign="center";c.textBaseline="top";
+  const dur=t1-t0,step=dur>120?30:dur>40?10:5;
+  for(let t=Math.ceil(t0/step)*step;t<=t1+1e-6;t+=step)c.fillText(`${Math.round(t-t0)}s`,x(t),T+H+4);
+  if(tracePts.length<2)return;
+  c.lineWidth=2.25;c.lineJoin="round";
+  for(let i=1;i<tracePts.length;i++){const p=tracePts[i-1],q=tracePts[i];
+    c.strokeStyle=css(colorVar(q.s));c.globalAlpha=q.v?1:0.35;
+    c.beginPath();c.moveTo(x(p.t),y(p.s));c.lineTo(x(q.t),y(q.s));c.stroke();}
+  c.globalAlpha=1;const last=tracePts[tracePts.length-1];
+  c.fillStyle=css(colorVar(last.s));c.beginPath();c.arc(x(last.t),y(last.s),3.5,0,7);c.fill();
+}
+window.addEventListener("resize",drawTrace);
+if(window.matchMedia)matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change",drawTrace);
+new MutationObserver(drawTrace).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+
+/* example state */
+(function example(){let s=24;
+  for(let i=0;i<=300;i++){const t=i/10;const target=t<9?24+6*Math.sin(t):t<14?30+8*(t-9):t<21?72+6*Math.sin(t*2):t<25?72-9*(t-21):34;
+    s+=(target-s)*0.25;tracePts.push({t,s,v:!(t>14.5&&t<15.2)});}
+  traceSpan=[0,30];setGauge(38,"Example reading. Tap Start listening and talk normally.");
+  requestAnimationFrame(drawTrace);})();
+function clearExample(){if(!$("exampleChip").hidden){$("exampleChip").hidden=true;tracePts=[];}}
+
+/* live */
+let ctx,stream,an,buf,running=false,raf,lastF=0,tLive=0,smooth=20,noise=-60,calib=null,wake=null;
+function micBlocked(msg){
+  const n=$("micNote");n.hidden=false;
+  n.innerHTML=`<strong>The microphone isn't available here.</strong> ${msg} You can still use <em>Analyze a recording</em> below: record a voice memo and pick it.`;
+}
+async function startMic(){
+  if(running)return true;
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){micBlocked("This page needs to be opened over HTTPS in Safari or Chrome to listen live.");return false;}
+  try{stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:true,autoGainControl:false}});}
+  catch(e){micBlocked(e&&e.name==="NotAllowedError"?"Access was refused. Allow the microphone for this site in your browser settings, then try again.":"Your browser didn't give this page a microphone.");return false;}
+  $("micNote").hidden=true;
+  ctx=new (window.AudioContext||window.webkitAudioContext)();await ctx.resume();
+  const src=ctx.createMediaStreamSource(stream);an=ctx.createAnalyser();an.fftSize=N;src.connect(an);
+  buf=new Float32Array(N);running=true;lastF=performance.now();tLive=0;smooth=20;noise=-60;
+  clearExample();tracePts=[];traceSpan=[0,30];$("traceLabel").textContent="live · last 30 s";
+  $("startBtn").textContent="Stop";
+  try{wake=await navigator.wakeLock?.request("screen");}catch(e){}
+  raf=requestAnimationFrame(tick);return true;
+}
+function stopMic(){
+  running=false;cancelAnimationFrame(raf);
+  stream&&stream.getTracks().forEach(t=>t.stop());ctx&&ctx.close();
+  try{wake&&wake.release();}catch(e){}
+  if(calib)endCal(true);
+  $("startBtn").textContent="Start listening";$("sub").textContent="Stopped.";
+}
+function tick(now){
+  if(!running)return;raf=requestAnimationFrame(tick);
+  if(now-lastF<90)return;const dt=Math.min((now-lastF)/1000,0.5);lastF=now;tLive+=dt;
+  an.getFloatTimeDomainData(buf);const f=features(buf,ctx.sampleRate);
+  if(f.db<noise)noise=f.db;else noise+=0.03;
+  const voiced=f.db>noise+9&&f.db>-62;
+  setReadouts(f);
+  if(calib){
+    if(voiced)calib.frames.push(f);
+    const left=Math.max(0,6-(tLive-calib.t0));$("calCount").textContent=`${left.toFixed(1)} s left · ${calib.frames.length} speech frames`;
+    if(left<=0)endCal(false);
+    return;
+  }
+  const b=baseline||DEF;
+  if(voiced){const r=rawScore(f,b);smooth+=(r-smooth)*(1-Math.exp(-dt/1.2));}
+  else smooth+=(20-smooth)*(1-Math.exp(-dt/4));
+  tracePts.push({t:tLive,s:smooth,v:voiced});
+  while(tracePts.length&&tracePts[0].t<tLive-30)tracePts.shift();
+  traceSpan=[Math.max(0,tLive-30),Math.max(30,tLive)];
+  setGauge(smooth,voiced?(baseline?"Listening to you":"Listening · calibrate for better accuracy"):"Waiting for speech");
+  drawTrace();
+}
+$("startBtn").onclick=()=>{running?stopMic():startMic();};
+
+/* calibration */
+$("calBtn").onclick=async()=>{
+  if(calib)return;
+  if(!(await startMic()))return;
+  calib={t0:tLive,frames:[]};$("calNote").hidden=false;$("calBtn").disabled=true;
+  setGauge(0,"Calibrating…");
+};
+function endCal(cancelled){
+  const fr=calib.frames;calib=null;$("calNote").hidden=true;$("calBtn").disabled=false;
+  if(cancelled)return;
+  if(fr.length<15){$("sub").textContent="I couldn't hear enough speech. Try calibrating again and read the sentence aloud.";return;}
+  baseline=makeBaseline(fr);try{localStorage.setItem("temper-baseline",JSON.stringify(baseline));}catch(e){}
+  showCal();smooth=20;$("sub").textContent="Calibrated. Now talk as you normally would.";
+}
+
+/* file analysis */
+$("fileIn").onchange=async e=>{
+  const file=e.target.files[0];e.target.value="";if(!file)return;
+  if(running)stopMic();
+  const out=$("fileResult");out.textContent="Reading audio…";
+  let audio;
+  try{const ac=new (window.AudioContext||window.webkitAudioContext)();audio=await ac.decodeAudioData(await file.arrayBuffer());ac.close();}
+  catch(err){out.textContent="That file couldn't be read as audio. Try an M4A, MP3 or WAV recording.";return;}
+  const sr=audio.sampleRate,x=audio.getChannelData(0).subarray(0,Math.min(audio.length,sr*300));
+  const frames=[];
+  for(let i=0;i+N<=x.length;i+=N){const f=features(x.subarray(i,i+N),sr);f.t=i/sr;frames.push(f);
+    if(frames.length%150===0){out.textContent=`Analyzing… ${Math.round(100*i/x.length)}%`;await new Promise(r=>setTimeout(r,0));}}
+  if(frames.length<10){out.textContent="That recording is too short. Use at least a few seconds of speech.";return;}
+  const dbs=frames.map(f=>f.db).sort((a,b)=>a-b),nf=dbs[Math.floor(dbs.length*0.15)];
+  frames.forEach(f=>f.v=f.db>nf+9&&f.db>-62);
+  const voiced=frames.filter(f=>f.v);
+  if(voiced.length<10){out.textContent="I couldn't find enough speech in that recording.";return;}
+  let b=baseline,which="your calibrated calm voice";
+  if(!b){const q=voiced.slice().sort((a,c)=>a.db-c.db).slice(0,Math.ceil(voiced.length/2));b=makeBaseline(q);which="the quieter half of this recording (calibrate for a fairer comparison)";}
+  const dt=N/sr;let s=20;const pts=[],vs=[];
+  frames.forEach(f=>{if(f.v){s+=(rawScore(f,b)-s)*(1-Math.exp(-dt/1.2));vs.push(s);}else s+=(20-s)*(1-Math.exp(-dt/4));pts.push({t:f.t,s,v:f.v});});
+  clearExample();tracePts=pts;traceSpan=[0,frames[frames.length-1].t];
+  $("traceLabel").textContent=`${file.name.slice(0,22)} · ${Math.round(traceSpan[1])} s`;
+  const sorted=vs.slice().sort((a,c)=>a-c),p75=sorted[Math.floor(sorted.length*0.75)],peak=sorted[sorted.length-1];
+  const angry=vs.filter(v=>v>=HOT).length*dt,tense=vs.filter(v=>v>=CALM).length*dt,speech=vs.length*dt;
+  const verdictScore=angry>speech*0.25?Math.max(p75,HOT):tense>speech*0.25?clamp(p75,CALM,HOT-1):Math.min(p75,CALM-1);
+  setGauge(verdictScore,`Whole recording · peak ${Math.round(peak)}`);
+  setReadouts({db:stats(voiced.map(f=>f.db))[0],pitch:stats(voiced.map(f=>f.pitch).filter(Boolean).concat([b.pitch]))[0],cent:stats(voiced.map(f=>f.cent))[0]});
+  out.textContent=`${Math.round(speech)} s of speech: angry for ${Math.round(angry)} s, tense or worse for ${Math.round(tense)} s. Compared with ${which}.`;
+  drawTrace();
+};
+})();
+</script>
+</body></html>
